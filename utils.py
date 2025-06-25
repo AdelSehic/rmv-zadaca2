@@ -17,6 +17,7 @@ def imageScroller(image_array, increment=1):
         if key == 83:
             index = (index + increment) % len(image_array)
         if key == 27:
+            cv2.destroyAllWindows()
             return 0
 
 def createGridNoTitles(grid_x, grid_y, images):

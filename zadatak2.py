@@ -75,6 +75,5 @@ titles = ut.transposeArray(titles, 3, 4)
 
 ut.addImageTitles(images, titles)
 ut.imageScroller(images)
-cv2.destroyAllWindows()
 
 ut.createGrid(3, 4, images, titles)

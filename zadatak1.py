@@ -40,4 +40,3 @@ for i in range(rotation_steps_n):
     rotated_images.append(rotated)
 
 ut.imageScroller(rotated_images, -1)
-cv2.destroyAllWindows()
