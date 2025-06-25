@@ -66,19 +66,15 @@ gaussian_noise = add_gaussian_noise(img)
 snp_noise = add_salt_and_pepper_noise(img)
 
 images.extend([gaussian_noise, snp_noise])
+images.extend(add_gauss_filter([img, gaussian_noise, snp_noise]))
+images.extend(add_averaging_filter([img, gaussian_noise, snp_noise]))
+images.extend(add_median_filter([img, gaussian_noise, snp_noise]))
 
-gaus_filtering = add_gauss_filter([img, gaussian_noise, snp_noise])
-images.extend(gaus_filtering)
-
-avg_filter = add_averaging_filter([img, gaussian_noise, snp_noise])
-images.extend(avg_filter)
-
-median_filter = add_median_filter([img, gaussian_noise, snp_noise])
-images.extend(median_filter)
-
-ut.createGrid(3, 4, images, titles)
+images = ut.transposeArray(images, 3, 4)
+titles = ut.transposeArray(titles, 3, 4)
 
 ut.addImageTitles(images, titles)
-
 ut.imageScroller(images)
 cv2.destroyAllWindows()
+
+ut.createGrid(3, 4, images, titles)

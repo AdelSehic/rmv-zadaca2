@@ -58,3 +58,10 @@ def addImageTitles(images, titles):
     import cv2
     for idx, (img, title) in enumerate(zip(images, titles)):
         cv2.putText(img, title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), thickness=2, lineType=cv2.LINE_AA)
+
+def transposeArray(array, x, y):
+    transposed = []
+    for col in range(x):
+        for row in range(y):
+            transposed.append(array[row * x + col])
+    return transposed
