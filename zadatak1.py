@@ -1,24 +1,11 @@
 #!/usr/bin/env python3
 
 import cv2
+import utils as ut
 
 IMAGE = "tulips.png"
 
-rotate = 0
-rot_step = 1
-
-def waitEsc():
-    global rotate
-    while True:
-        key = cv2.waitKey(0) & 0xFF
-        if key == 81:
-            rotate = (rotate + 1) % rot_steps_n
-            return 1
-        if key == 83:
-            rotate = (rotate - 1) % rot_steps_n
-            return 1
-        if key == 27:
-            return 0
+ROTATION_STEP = 1
 
 def rotate_image(image, angle):
     # dimenzije i centar slike
@@ -44,18 +31,12 @@ def rotate_image(image, angle):
 
 img = cv2.imread(IMAGE)
 
-rot_steps_n = int(360 / rot_step)
+rotation_steps_n = int(360 / ROTATION_STEP)
 rotated_images = []
 
-for i in range(rot_steps_n):
-    angle = i*rot_step
+for i in range(rotation_steps_n):
+    angle = i*ROTATION_STEP
     rotated = rotate_image(img, angle)
     rotated_images.append(rotated)
 
-
-while True:
-    cv2.imshow('Rotated', rotated_images[rotate])
-    if not waitEsc():
-        break
-
-cv2.destroyAllWindows()
+ut.imageScroller(rotated_images)
