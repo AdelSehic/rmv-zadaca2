@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import cv2
+
+IMAGE = "tulips.png"
+
+rotate = 0
+rot_step = 1
+
+def waitEsc():
+    global rotate
+    while True:
+        key = cv2.waitKey(0) & 0xFF
+        if key == 81:
+            rotate = (rotate + 1) % rot_steps_n
+            return 1
+        if key == 83:
+            rotate = (rotate - 1) % rot_steps_n
+            return 1
+        if key == 27:
+            return 0
+
+def rotate_image(image, angle):
+    # dimenzije i centar slike
+    (h, w) = image.shape[:2]
+    center = (w // 2, h // 2)
+
+    # matrica rotacije slike
+    M = cv2.getRotationMatrix2D(center, angle, 1.0)
+
+    abs_cos = abs(M[0, 0])
+    abs_sin = abs(M[0, 1])
+
+    # nove dimenzije rotirane slike
+    new_w = int(h * abs_sin + w * abs_cos)
+    new_h = int(h * abs_cos + w * abs_sin)
+
+    # prilagodjavanje matrice rotacije novim dimenzijama
+    M[0, 2] += (new_w / 2) - center[0]
+    M[1, 2] += (new_h / 2) - center[1]
+
+    rotated = cv2.warpAffine(image, M, (new_w, new_h))
+    return rotated
+
+img = cv2.imread(IMAGE)
+
+rot_steps_n = int(360 / rot_step)
+rotated_images = []
+
+for i in range(rot_steps_n):
+    angle = i*rot_step
+    rotated = rotate_image(img, angle)
+    rotated_images.append(rotated)
+
+
+while True:
+    cv2.imshow('Rotated', rotated_images[rotate])
+    if not waitEsc():
+        break
+
+cv2.destroyAllWindows()
