@@ -39,4 +39,5 @@ for i in range(rotation_steps_n):
     rotated = rotate_image(img, angle)
     rotated_images.append(rotated)
 
-ut.imageScroller(rotated_images)
+ut.imageScroller(rotated_images, -1)
+cv2.destroyAllWindows()
