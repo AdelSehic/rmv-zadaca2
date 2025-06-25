@@ -66,3 +66,16 @@ def transposeArray(array, x, y):
         for row in range(y):
             transposed.append(array[row * x + col])
     return transposed
+
+def gray_to_bgr(images):
+    import cv2
+    import numpy as np
+    result = []
+    for img in images:
+        if img.dtype == np.float64 or img.dtype == np.float32:
+            img = cv2.convertScaleAbs(img)
+        if len(img.shape) == 2:  # grayscale
+            img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+        result.append(img)
+    return result
+
