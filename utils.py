@@ -93,3 +93,12 @@ def gray_to_bgr(images):
         result.append(img)
     return result
 
+
+def resize_img(img, target_height):
+    import cv2
+    interpolation = cv2.INTER_AREA
+    h, w = img.shape[:2]
+    scale = target_height / h
+    new_width = int(w * scale)
+    resized = cv2.resize(img, (new_width, target_height), interpolation=interpolation)
+    return resized
