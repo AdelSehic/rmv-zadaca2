@@ -7,6 +7,30 @@ from InquirerPy import inquirer
 
 IMAGE = "lizard.jpg"
 
+sobel_titles = [
+    "Original",
+    "Grayscale", 
+    "Sobel X",
+    "Sobel Y",
+    "Sobel Combined"
+]
+
+canny_titles = [
+    "Original",
+    "Grayscale",
+    "Gaussian Blur",
+    "Sobel Step",
+    "Canny Result"
+]
+
+laplacian_titles = [
+    "Original",
+    "Grayscale", 
+    "Gaussian Blur",
+    "Laplacian Raw",
+    "Laplacian Blurred"
+]
+
 def sobel_process(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     sob_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)
@@ -58,6 +82,8 @@ while True:
         laplacian_images = laplacian_process(img)
         
         all_images = sobel_images + canny_images + laplacian_images
+        all_titles = sobel_titles + canny_titles + laplacian_titles
+        ut.addImageTitles(all_images, all_titles)
         ut.createGridNoTitles(5, 3, all_images)
     if choice == "Sobel":
         ut.createGridNoTitles(5, 1, sobel_process(img))
