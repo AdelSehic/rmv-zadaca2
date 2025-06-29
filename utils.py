@@ -55,11 +55,7 @@ def createGrid(grid_x, grid_y, images, titles):
     plt.tight_layout()
     plt.show()
 
-# def addImageTitles(images, titles):
-#     import cv2
-#     for idx, (img, title) in enumerate(zip(images, titles)):
-#         cv2.putText(img, title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), thickness=2, lineType=cv2.LINE_AA)
-def addImageTitles(images, titles):
+def addImageTitles(images, titles, color=(255,255,255)):
     import cv2
     for idx, (img, title) in enumerate(zip(images, titles)):
         height, width = img.shape[:2]
@@ -72,7 +68,7 @@ def addImageTitles(images, titles):
         x = max(10, int(width * 0.02))
         y = max(text_height + 10, int(height * 0.08))
 
-        cv2.putText(img, title, (x, y), cv2.FONT_HERSHEY_SIMPLEX, font_scale, (255, 255, 255), thickness=thickness, lineType=cv2.LINE_AA)
+        cv2.putText(img, title, (x, y), cv2.FONT_HERSHEY_SIMPLEX, font_scale, color, thickness=thickness, lineType=cv2.LINE_AA)
 
 def transposeArray(array, x, y):
     transposed = []
