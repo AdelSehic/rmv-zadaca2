@@ -28,5 +28,7 @@ closing = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
 
 images = [binary, erosion, dilation, opening, closing]
 
+ut.save_images(images, titles, "saved/zadatak6", 400)
+
 ut.addImageTitles(images, titles)
 ut.imageScroller(images)
