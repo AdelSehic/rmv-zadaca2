@@ -21,6 +21,10 @@ layer_names = net.getUnconnectedOutLayersNames()
 # Load video
 cap = cv2.VideoCapture(yolo_path("yolo_clip.mp4"))  # or 0 for webcam
 
+# Video writer
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+out = cv2.VideoWriter("saved/zadatak8/output.mp4", fourcc, cap.get(cv2.CAP_PROP_FPS), (int(cap.get(3)), int(cap.get(4))))
+
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -59,9 +63,11 @@ while True:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
         cv2.putText(frame, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
+    out.write(frame)
     cv2.imshow("YOLO Detection", frame)
     if cv2.waitKey(1) == 27:  # ESC key to break
         break
 
 cap.release()
+out.release()
 cv2.destroyAllWindows()
