@@ -87,9 +87,11 @@ def main():
     graphs = []
     for values, labels, img in zip(top5, top5_labels, images):
         img_np = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-        graphs.append( np.hstack([ ut.resize_img(img_np, 400), make_probability_graph_img(values, labels) ]) )
+        graph_img = make_probability_graph_img(values, labels)
+        ut.save_images([img_np, graph_img], ["image", "graph"], f"saved/zadatak7/{labels[0]}", 400)
+        # graphs.append( np.hstack([ ut.resize_img(img_np, 400), make_probability_graph_img(values, labels) ]) )
 
-    ut.imageScroller(graphs)
+    # ut.imageScroller(graphs)
 
 if __name__ == "__main__":
     main()
