@@ -3,3 +3,5 @@ venv
 neural_network_sets/yolo/coco.names
 neural_network_sets/yolo/yolov4.cfg
 neural_network_sets/yolo/yolov4.weights
+neural_network_sets/cifar10/*
+cifar-env
