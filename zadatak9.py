@@ -234,7 +234,7 @@ def main():
     axes[1, 1].tick_params(axis='x', rotation=45)
     
     plt.tight_layout()
-    plt.savefig('cifar10_sklearn_results.png', dpi=300, bbox_inches='tight')
+    plt.savefig('saved/zadatak9/cifar10_sklearn_results.png', dpi=300, bbox_inches='tight')
     plt.show()
     
     # 8. Prikaz primera
@@ -258,7 +258,7 @@ def main():
         plt.axis('off')
     
     plt.tight_layout()
-    plt.savefig('cifar10_sklearn_predictions.png', dpi=300, bbox_inches='tight')
+    plt.savefig('saved/zadatak9/cifar10_sklearn_predictions.png', dpi=300, bbox_inches='tight')
     plt.show()
     
     print(f"\n=== ANALIZA ZAVRŠENA ===")
