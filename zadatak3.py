@@ -80,6 +80,10 @@ while True:
         sobel_images = sobel_process(img)
         canny_images = canny_process(img)
         laplacian_images = laplacian_process(img)
+
+        ut.save_images(sobel_images, sobel_titles, "saved/zadatak3/sobel", 400)
+        ut.save_images(canny_images, canny_titles, "saved/zadatak3/canny", 400)
+        ut.save_images(laplacian_images, laplacian_titles, "saved/zadatak3/laplacian", 400)
         
         all_images = sobel_images + canny_images + laplacian_images
         all_titles = sobel_titles + canny_titles + laplacian_titles

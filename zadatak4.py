@@ -136,6 +136,8 @@ def main():
     
     # Konverzija u grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    ut.save_images([gray], "original", "saved/zadatak4", 400)
     
     print("ZADATAK 4: Histogram grayscale slike i binarne slike")
     print("="*55)
@@ -153,6 +155,8 @@ def main():
     
     # Dodavanje naslova na slike
     ut.addImageTitles(display_images, binary_titles)
+
+    ut.save_images(display_images, binary_titles, "saved/zadatak4", 400)
     
     # Prikaz u gridu
     ut.createGridNoTitles(3, 2, display_images)

@@ -94,7 +94,25 @@ def resize_img(img, target_height):
     import cv2
     interpolation = cv2.INTER_AREA
     h, w = img.shape[:2]
+    if target_height > h:
+        return img
     scale = target_height / h
     new_width = int(w * scale)
     resized = cv2.resize(img, (new_width, target_height), interpolation=interpolation)
     return resized
+
+def save_images(images, titles, path, resize_height = 0):
+    import cv2
+    import os
+    if path is None:
+        path = os.path.join(os.curdir, "saved")
+    os.makedirs(path, exist_ok=True)
+    to_save = images
+    if resize_height != 0:
+        for i, img in enumerate(to_save):
+            to_save[i] = resize_img(img, resize_height)
+    for i, (img, title) in enumerate(zip(to_save, titles)):
+        clean_title = "".join(c if c.isalnum() or c in (' ', '_', '-') else '_' for c in title)
+        filename = f"{i}_{clean_title}.png"
+        full_path = os.path.join(path, filename)
+        cv2.imwrite(full_path, img)

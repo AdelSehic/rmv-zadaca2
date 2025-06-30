@@ -73,6 +73,8 @@ images.extend(add_median_filter([img, gaussian_noise, snp_noise]))
 images = ut.transposeArray(images, 3, 4)
 titles = ut.transposeArray(titles, 3, 4)
 
+ut.save_images(images, titles, "saved/zadatak2/", 400)
+
 ut.addImageTitles(images, titles)
 ut.imageScroller(images)
 
