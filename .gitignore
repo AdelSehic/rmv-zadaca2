@@ -1,2 +1,5 @@
 Masinska vizija
 venv
+neural_network_sets/yolo/coco.names
+neural_network_sets/yolo/yolov4.cfg
+neural_network_sets/yolo/yolov4.weights
